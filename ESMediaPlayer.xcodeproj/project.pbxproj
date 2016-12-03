@@ -28,7 +28,7 @@
 		6E18EE8B1DF14DB900BAA6CE /* icon.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6E18EE8A1DF14DB900BAA6CE /* icon.bundle */; };
 		6E18EE8E1DF150F000BAA6CE /* ESMediaBottomView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E18EE8C1DF150F000BAA6CE /* ESMediaBottomView.h */; };
 		6E18EE8F1DF150F000BAA6CE /* ESMediaBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E18EE8D1DF150F000BAA6CE /* ESMediaBottomView.m */; };
-		6E18EE941DF17C1E00BAA6CE /* 「你的名字」 五月天【如果我们不曾相遇】_你的名字里充满奇迹[超清版].flv in Resources */ = {isa = PBXBuildFile; fileRef = 6E18EE931DF17C1E00BAA6CE /* 「你的名字」 五月天【如果我们不曾相遇】_你的名字里充满奇迹[超清版].flv */; };
+		6E18EE941DF17C1E00BAA6CE /* 「你的名字」五月天【如果我们不曾相遇】.flv in Resources */ = {isa = PBXBuildFile; fileRef = 6E18EE931DF17C1E00BAA6CE /* 「你的名字」五月天【如果我们不曾相遇】.flv */; };
 		6E1ACDE91DF2797B009AC431 /* ESMediaPlayerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E1ACDE81DF2797B009AC431 /* ESMediaPlayerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E1BB2A11DF30D6E00D7DF8F /* ESMediaGestureRecognizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E1BB29F1DF30D6E00D7DF8F /* ESMediaGestureRecognizer.h */; };
 		6E1BB2A21DF30D6E00D7DF8F /* ESMediaGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1BB2A01DF30D6E00D7DF8F /* ESMediaGestureRecognizer.m */; };
@@ -83,7 +83,7 @@
 		6E18EE8A1DF14DB900BAA6CE /* icon.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = icon.bundle; sourceTree = "<group>"; };
 		6E18EE8C1DF150F000BAA6CE /* ESMediaBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESMediaBottomView.h; sourceTree = "<group>"; };
 		6E18EE8D1DF150F000BAA6CE /* ESMediaBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESMediaBottomView.m; sourceTree = "<group>"; };
-		6E18EE931DF17C1E00BAA6CE /* 「你的名字」 五月天【如果我们不曾相遇】_你的名字里充满奇迹[超清版].flv */ = {isa = PBXFileReference; lastKnownFileType = file; path = "「你的名字」 五月天【如果我们不曾相遇】_你的名字里充满奇迹[超清版].flv"; sourceTree = "<group>"; };
+		6E18EE931DF17C1E00BAA6CE /* 「你的名字」五月天【如果我们不曾相遇】.flv */ = {isa = PBXFileReference; lastKnownFileType = file; path = "「你的名字」五月天【如果我们不曾相遇】.flv"; sourceTree = "<group>"; };
 		6E1ACDE81DF2797B009AC431 /* ESMediaPlayerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESMediaPlayerProtocol.h; sourceTree = "<group>"; };
 		6E1BB29F1DF30D6E00D7DF8F /* ESMediaGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESMediaGestureRecognizer.h; sourceTree = "<group>"; };
 		6E1BB2A01DF30D6E00D7DF8F /* ESMediaGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESMediaGestureRecognizer.m; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 		6E18EE6C1DF14B2100BAA6CE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6E18EE931DF17C1E00BAA6CE /* 「你的名字」 五月天【如果我们不曾相遇】_你的名字里充满奇迹[超清版].flv */,
+				6E18EE931DF17C1E00BAA6CE /* 「你的名字」五月天【如果我们不曾相遇】.flv */,
 				6E18EE6D1DF14B2100BAA6CE /* 6282404.mp4 */,
 				6E18EE6E1DF14B2100BAA6CE /* 双笙 - 故梦.mp3 */,
 			);
@@ -299,7 +299,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E18EE941DF17C1E00BAA6CE /* 「你的名字」 五月天【如果我们不曾相遇】_你的名字里充满奇迹[超清版].flv in Resources */,
+				6E18EE941DF17C1E00BAA6CE /* 「你的名字」五月天【如果我们不曾相遇】.flv in Resources */,
 				6E18EE711DF14B2100BAA6CE /* 双笙 - 故梦.mp3 in Resources */,
 				6E18EE701DF14B2100BAA6CE /* 6282404.mp4 in Resources */,
 				6E18EE641DF14AFE00BAA6CE /* LaunchScreen.storyboard in Resources */,

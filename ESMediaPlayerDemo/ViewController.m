@@ -22,8 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-//    self.navigationController setHidesBarsOnTap:<#(BOOL)#>
-//    self.navigationController setNavigationBarHidden:<#(BOOL)#>
     
     
     [self addURLsWithExtension:@"mp3"];

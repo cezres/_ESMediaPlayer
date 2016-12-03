@@ -19,6 +19,7 @@
 
 @property (strong, nonatomic, readonly) NSArray<id<ESMediaPlayerCtrlAble>> *ctrls;
 
+@property (assign, nonatomic, readonly) BOOL isCtrlViewHidden;
 
 
 - (BOOL)play:(NSURL *)url;
@@ -36,6 +37,7 @@
  */
 - (void)setCtrlViewHidden:(NSNumber *)hidden;
 
+
 - (void)addMediaCtrl:(id<ESMediaPlayerCtrlAble>)ctrl;
 
 
@@ -44,7 +46,7 @@
 @property (assign, nonatomic) NSTimeInterval currentPlaybackTime;
 @property (assign, nonatomic, readonly) NSTimeInterval duration;
 
-@property (assign, nonatomic, readonly) NSInteger playbackState;
-@property (assign, nonatomic, readonly) NSInteger loadState;
+@property (assign, nonatomic, readonly) ESMediaPlaybackState playbackState;
+@property (assign, nonatomic, readonly) ESMediaLoadState loadState;
 
 @end

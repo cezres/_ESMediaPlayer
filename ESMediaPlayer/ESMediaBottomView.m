@@ -65,10 +65,17 @@
     return self;
 }
 
+- (void)setHidden:(BOOL)hidden {
+    [super setHidden:hidden];
+    if (!hidden) {
+        [self refresh];
+    }
+}
+
 - (void)refresh {
     _progress.value = _playerView.currentPlaybackTime;
     _currentTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)_playerView.currentPlaybackTime / 60, (int)_playerView.currentPlaybackTime % 60];
-    if (!self.hidden) {
+    if (!self.hidden && _playerView.playbackState == ESMediaPlaybackStatePlaying) {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(refresh) object:NULL];
         [self performSelector:@selector(refresh) withObject:NULL afterDelay:0.5];
     }

@@ -10,7 +10,12 @@
 #import "ESMediaPlayerProtocol.h"
 
 @interface ESMediaGestureRecognizer : NSObject
+<ESMediaPlayerCtrlAble>
 
 @property (weak, nonatomic) ESMediaPlayerView *playerView;
+
+
+@property (strong, nonatomic) UITapGestureRecognizer *tapGesture;
+
 
 @end

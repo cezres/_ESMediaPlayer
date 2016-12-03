@@ -12,6 +12,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 #import "ESMediaBottomView.h"
+#import "ESMediaGestureRecognizer.h"
 
 
 @interface ESMediaPlayerView ()
@@ -36,9 +37,8 @@
         
         _ctrls = [NSMutableArray array];
         
-        ESMediaBottomView *bottomView = [[ESMediaBottomView alloc] init];
-        [self addMediaCtrl:bottomView];
-        
+        [self addMediaCtrl:[[ESMediaBottomView alloc] init]];
+        [self addMediaCtrl:[[ESMediaGestureRecognizer alloc] init]];
     }
     return self;
 }
@@ -101,6 +101,7 @@
 }
 
 - (void)setCtrlViewHidden:(NSNumber *)hidden {
+    _isCtrlViewHidden = [hidden boolValue];
     for (UIView<ESMediaPlayerCtrlAble> *ctrl  in _ctrls) {
         if ([ctrl isKindOfClass:[UIView class]] && ctrl.isEnableAutoHide) {
             ctrl.hidden = [hidden boolValue];
@@ -207,11 +208,11 @@
 - (NSTimeInterval)duration {
     return [_player duration];
 }
-- (NSInteger)playbackState {
-    return [_player playbackState];
+- (ESMediaPlaybackState)playbackState {
+    return (ESMediaPlaybackState)[_player playbackState];
 }
-- (NSInteger)loadState {
-    return [_player loadState];
+- (ESMediaLoadState)loadState {
+    return (ESMediaLoadState)[_player loadState];
 }
 
 

@@ -17,5 +17,6 @@
 
 @property (strong, nonatomic) UITapGestureRecognizer *tapGesture;
 
+@property (strong, nonatomic) UIPanGestureRecognizer *panGesture;
 
 @end

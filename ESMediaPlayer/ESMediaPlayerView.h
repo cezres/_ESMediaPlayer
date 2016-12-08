@@ -21,6 +21,13 @@
 
 @property (assign, nonatomic, readonly) BOOL isCtrlViewHidden;
 
+//@property (assign, nonatomic) BOOL isEnableAutoHide;
+
+/**
+ 自动隐藏控制视图的时间间隔  如果小于等于0 不自动隐藏
+ */
+@property (assign, nonatomic) NSTimeInterval autoHiddenTimeinterval;
+
 
 - (BOOL)play:(NSURL *)url;
 

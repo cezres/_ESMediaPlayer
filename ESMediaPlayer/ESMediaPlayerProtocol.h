@@ -50,14 +50,21 @@ typedef NS_ENUM(NSInteger, ESMediaPlaybackState) {
 #pragma mark - view
 
 /**
- 自动隐藏是否有效
+ 是否可以隐藏控制视图
  */
-@property (assign, nonatomic, readonly) BOOL isEnableAutoHide;
+@property (assign, nonatomic, readonly) BOOL isCanHideCtrlView;
+
+/**
+ 设置控制视图隐藏
+
+ @param hidden <#hidden description#>
+ */
+- (void)setCtrlViewHidden:(BOOL)hidden;
 
 /**
  重写此方法进行布局
  */
-- (void)layoutWithRecommendRect:(CGRect)rect;
+- (void)layoutWithPlayerBounds:(CGRect)bounds;
 
 
 

@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "ESMediaPlayer.h"
 
+#import "TestViewController.h"
+
 @interface ViewController ()
 
 @property (strong, nonatomic) ESMediaPlayerView *player;
@@ -23,11 +25,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    
     [self addURLsWithExtension:@"mp3"];
     [self addURLsWithExtension:@"mp4"];
     [self addURLsWithExtension:@"flv"];
-    
     
     [self.view addSubview:self.player];
 }
@@ -53,7 +53,15 @@
     }
 }
 - (IBAction)stop:(id)sender {
-    [_player stop];
+//    [_player stop];
+    
+    ESMediaPlayerViewController *player = [ESMediaPlayerViewController playerInController:self];
+    [player.playerView play:_urls.firstObject];
+    
+//    TestViewController *test = [[TestViewController alloc] init];
+//    [self presentViewController:test animated:YES completion:NULL];
+    
+    
 }
 
 - (void)addURLsWithExtension:(NSString *)extension {

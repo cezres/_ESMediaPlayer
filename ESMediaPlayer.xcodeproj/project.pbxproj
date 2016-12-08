@@ -32,6 +32,9 @@
 		6E1ACDE91DF2797B009AC431 /* ESMediaPlayerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E1ACDE81DF2797B009AC431 /* ESMediaPlayerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E1BB2A11DF30D6E00D7DF8F /* ESMediaGestureRecognizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E1BB29F1DF30D6E00D7DF8F /* ESMediaGestureRecognizer.h */; };
 		6E1BB2A21DF30D6E00D7DF8F /* ESMediaGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E1BB2A01DF30D6E00D7DF8F /* ESMediaGestureRecognizer.m */; };
+		6E20C7131DF97251006A7A16 /* ESMediaProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E20C7111DF97251006A7A16 /* ESMediaProgressHUD.h */; };
+		6E20C7141DF97251006A7A16 /* ESMediaProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E20C7121DF97251006A7A16 /* ESMediaProgressHUD.m */; };
+		6E20C7171DF97FB5006A7A16 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E20C7161DF97FB5006A7A16 /* TestViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,10 @@
 		6E1ACDE81DF2797B009AC431 /* ESMediaPlayerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESMediaPlayerProtocol.h; sourceTree = "<group>"; };
 		6E1BB29F1DF30D6E00D7DF8F /* ESMediaGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESMediaGestureRecognizer.h; sourceTree = "<group>"; };
 		6E1BB2A01DF30D6E00D7DF8F /* ESMediaGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESMediaGestureRecognizer.m; sourceTree = "<group>"; };
+		6E20C7111DF97251006A7A16 /* ESMediaProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESMediaProgressHUD.h; sourceTree = "<group>"; };
+		6E20C7121DF97251006A7A16 /* ESMediaProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESMediaProgressHUD.m; sourceTree = "<group>"; };
+		6E20C7151DF97FB5006A7A16 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		6E20C7161DF97FB5006A7A16 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +150,8 @@
 				6E18EE8D1DF150F000BAA6CE /* ESMediaBottomView.m */,
 				6E1BB29F1DF30D6E00D7DF8F /* ESMediaGestureRecognizer.h */,
 				6E1BB2A01DF30D6E00D7DF8F /* ESMediaGestureRecognizer.m */,
+				6E20C7111DF97251006A7A16 /* ESMediaProgressHUD.h */,
+				6E20C7121DF97251006A7A16 /* ESMediaProgressHUD.m */,
 				6E18EE8A1DF14DB900BAA6CE /* icon.bundle */,
 			);
 			path = ESMediaPlayer;
@@ -156,6 +165,8 @@
 				6E18EE581DF14AFE00BAA6CE /* AppDelegate.m */,
 				6E18EE5A1DF14AFE00BAA6CE /* ViewController.h */,
 				6E18EE5B1DF14AFE00BAA6CE /* ViewController.m */,
+				6E20C7151DF97FB5006A7A16 /* TestViewController.h */,
+				6E20C7161DF97FB5006A7A16 /* TestViewController.m */,
 				6E18EE5D1DF14AFE00BAA6CE /* Main.storyboard */,
 				6E18EE601DF14AFE00BAA6CE /* Assets.xcassets */,
 				6E18EE621DF14AFE00BAA6CE /* LaunchScreen.storyboard */,
@@ -200,6 +211,7 @@
 			files = (
 				6E18EE481DF14AEF00BAA6CE /* ESMediaPlayer.h in Headers */,
 				6E18EE791DF14B4900BAA6CE /* ESMediaPlayerViewController.h in Headers */,
+				6E20C7131DF97251006A7A16 /* ESMediaProgressHUD.h in Headers */,
 				6E1ACDE91DF2797B009AC431 /* ESMediaPlayerProtocol.h in Headers */,
 				6E18EE8E1DF150F000BAA6CE /* ESMediaBottomView.h in Headers */,
 				6E18EE751DF14B3700BAA6CE /* ESMediaPlayerView.h in Headers */,
@@ -316,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E1BB2A21DF30D6E00D7DF8F /* ESMediaGestureRecognizer.m in Sources */,
+				6E20C7141DF97251006A7A16 /* ESMediaProgressHUD.m in Sources */,
 				6E18EE7A1DF14B4900BAA6CE /* ESMediaPlayerViewController.m in Sources */,
 				6E18EE8F1DF150F000BAA6CE /* ESMediaBottomView.m in Sources */,
 				6E18EE761DF14B3700BAA6CE /* ESMediaPlayerView.m in Sources */,
@@ -328,6 +341,7 @@
 			files = (
 				6E18EE5C1DF14AFE00BAA6CE /* ViewController.m in Sources */,
 				6E18EE591DF14AFE00BAA6CE /* AppDelegate.m in Sources */,
+				6E20C7171DF97FB5006A7A16 /* TestViewController.m in Sources */,
 				6E18EE561DF14AFE00BAA6CE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

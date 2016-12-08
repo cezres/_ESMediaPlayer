@@ -9,6 +9,7 @@
 #import "ESMediaBottomView.h"
 #import <IJKMediaFramework/IJKMediaFramework.h>
 #import "ESMediaPlayerView.h"
+#import "ESMediaProgressHUD.h"
 
 /**
  进度条
@@ -19,6 +20,9 @@
 
 
 @interface ESMediaBottomView ()
+{
+    BOOL _isCanHideCtrlView;
+}
 
 @property (strong, nonatomic) UIButton *playSwitchButton;
 
@@ -61,6 +65,8 @@
         _playSwitchButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_playSwitchButton addTarget:self action:@selector(onClickPlaySwitch) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_playSwitchButton];
+        
+        _isCanHideCtrlView = YES;
     }
     return self;
 }
@@ -96,35 +102,42 @@
 
 #pragma mark - Slider
 - (void)didSliderTouchDown {
-//    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hide) object:NULL];
+    _isCanHideCtrlView = NO;
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(refresh) object:NULL];
 }
 - (void)didSliderTouchCancel {
-//    [self performSelector:@selector(hide) withObject:NULL afterDelay:5];
+    _isCanHideCtrlView = YES;
+    [ESMediaProgressHUD hidden];
     [self refresh];
 }
 - (void)didSliderTouchUpOutside {
-//    [self performSelector:@selector(hide) withObject:NULL afterDelay:5];
+    _isCanHideCtrlView = YES;
+    [ESMediaProgressHUD hidden];
     [self refresh];
 }
 - (void)didSliderTouchUpInside {
+    _isCanHideCtrlView = YES;
     _playerView.currentPlaybackTime = _progress.value;
-//    [VideoPlayerChangeProgressView hidden];
-//    [self performSelector:@selector(hide) withObject:NULL afterDelay:5];
+    [ESMediaProgressHUD hidden];
     [self refresh];
 }
 - (void)didSliderValueChanged {
-//    [VideoPlayerChangeProgressView showProgressViewWith:_progressView.value duration:_duration];
+    [ESMediaProgressHUD showHUDWithCurrentTime:_progress.value duration:_playerView.duration];
 }
 
 
 #pragma mark - ESMediaCtrlAbleView
-- (BOOL)isEnableAutoHide {
-    return YES;
+
+- (BOOL)isCanHideCtrlView {
+    return _isCanHideCtrlView;
 }
 
-- (void)layoutWithRecommendRect:(CGRect)rect {
-    self.frame = CGRectMake(0, rect.size.height - 49 - 50, rect.size.width, 49 + 50);
+- (void)setCtrlViewHidden:(BOOL)hidden {
+    self.hidden = hidden;
+}
+
+- (void)layoutWithPlayerBounds:(CGRect)bounds {
+    self.frame = CGRectMake(0, bounds.size.height - 49 - 50, bounds.size.width, 49 + 50);
     _playSwitchButton.frame = CGRectMake(self.bounds.size.width - 10 - 55, 0, 55, 50);
     _progressContentView.frame = CGRectMake(0, 50, self.bounds.size.width, self.bounds.size.height-50);
     

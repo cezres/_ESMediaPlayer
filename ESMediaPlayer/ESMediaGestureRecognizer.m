@@ -10,6 +10,7 @@
 #import "ESMediaPlayerView.h"
 #import <IJKMediaFramework/IJKMediaFramework.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "ESMediaProgressHUD.h"
 
 typedef NS_ENUM(NSInteger, PanGestureMode) {
     PanGestureModeNone,
@@ -28,6 +29,9 @@ typedef NS_ENUM(NSInteger, PanGestureMode) {
     
     NSTimeInterval _playTime;
 }
+
+@property (strong, nonatomic) UITapGestureRecognizer *tapGesture;
+@property (strong, nonatomic) UIPanGestureRecognizer *panGesture;
 
 @end
 
@@ -72,7 +76,10 @@ typedef NS_ENUM(NSInteger, PanGestureMode) {
     }
     else if (panGesture.state == UIGestureRecognizerStateChanged) {
         if (_panGestureMode == PanGestureModePlayProgress) {
-            
+            CGFloat offset = translation.x / panGesture.view.bounds.size.width * _playerView.duration;
+            CGFloat newTime = _playTime + offset;
+            newTime = newTime < 0 ? 0 : newTime > _playerView.duration ? _playerView.duration : newTime;
+            [ESMediaProgressHUD showHUDWithCurrentTime:newTime duration:_playerView.duration];
         }
         else {
             CGFloat offset = -translation.y / 200;
@@ -95,6 +102,7 @@ typedef NS_ENUM(NSInteger, PanGestureMode) {
             CGFloat newTime = _playTime + offset;
             newTime = newTime < 0 ? 0 : newTime > _playerView.duration ? _playerView.duration : newTime;
             _playerView.currentPlaybackTime = newTime;
+            [ESMediaProgressHUD hidden];
         }
         _panGestureMode = PanGestureModeNone;
     }

@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ESMediaPlayerView.h"
 
 @interface ESMediaPlayerViewController : UIViewController
+
+@property (strong, nonatomic, readonly) ESMediaPlayerView *playerView;
+
+
++ (instancetype)playerInController:(UIViewController *)viewController;
 
 @end

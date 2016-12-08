@@ -36,6 +36,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playLoadStateChanged:) name:IJKMPMoviePlayerLoadStateDidChangeNotification object:NULL];
         
         _ctrls = [NSMutableArray array];
+        _autoHiddenTimeinterval = 4;
         
         [self addMediaCtrl:[[ESMediaBottomView alloc] init]];
         [self addMediaCtrl:[[ESMediaGestureRecognizer alloc] init]];
@@ -52,8 +53,8 @@
     _player.view.frame = self.bounds;
     _audioArtworkView.frame = self.bounds;
     for (id<ESMediaPlayerCtrlAble> ctrl  in _ctrls) {
-        if ([ctrl respondsToSelector:@selector(layoutWithRecommendRect:)]) {
-            [ctrl layoutWithRecommendRect:self.bounds];
+        if ([ctrl respondsToSelector:@selector(layoutWithPlayerBounds:)]) {
+            [ctrl layoutWithPlayerBounds:self.bounds];
         }
     }
 }
@@ -61,6 +62,7 @@
 - (void)willMoveToWindow:(UIWindow *)newWindow {
     if (newWindow) {
         [_player prepareToPlay];
+        [self setCtrlViewHidden:@(NO)];
     }
     else {
         [_player shutdown];
@@ -101,11 +103,26 @@
 }
 
 - (void)setCtrlViewHidden:(NSNumber *)hidden {
-    _isCtrlViewHidden = [hidden boolValue];
-    for (UIView<ESMediaPlayerCtrlAble> *ctrl  in _ctrls) {
-        if ([ctrl isKindOfClass:[UIView class]] && ctrl.isEnableAutoHide) {
-            ctrl.hidden = [hidden boolValue];
+    BOOL isCanHideCtrlView = YES;
+    for (id<ESMediaPlayerCtrlAble> ctrl  in _ctrls) {
+        if ([ctrl respondsToSelector:@selector(isCanHideCtrlView)]) {
+            if (![ctrl isCanHideCtrlView]) {
+                isCanHideCtrlView = NO;
+                break;
+            }
         }
+    }
+    if (isCanHideCtrlView) {
+        _isCtrlViewHidden = [hidden boolValue];
+        for (id<ESMediaPlayerCtrlAble> ctrl  in _ctrls) {
+            if ([ctrl respondsToSelector:@selector(setCtrlViewHidden:)]) {
+                [ctrl setCtrlViewHidden:[hidden boolValue]];
+            }
+        }
+    }
+    if (!_isCtrlViewHidden && _autoHiddenTimeinterval > 0 && _player.isPlaying) {
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setCtrlViewHidden:) object:NULL];
+        [self performSelector:@selector(setCtrlViewHidden:) withObject:@(YES) afterDelay:_autoHiddenTimeinterval];
     }
 }
 
@@ -174,12 +191,17 @@
     IJKMPMoviePlaybackState playbackState = [_player playbackState];
     if (playbackState == ESMediaPlaybackStateStopped) {
         printf("playbackState:\tESMediaPlaybackStateStopped\n");
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setCtrlViewHidden:) object:NULL];
     }
     else if (playbackState == ESMediaPlaybackStatePlaying) {
         printf("playbackState:\tESMediaPlaybackStatePlaying\n");
+        if (!_isCtrlViewHidden && _autoHiddenTimeinterval > 0) {
+            [self performSelector:@selector(setCtrlViewHidden:) withObject:@(YES) afterDelay:_autoHiddenTimeinterval];
+        }
     }
     else if (playbackState == ESMediaPlaybackStatePaused) {
         printf("playbackState:\tESMediaPlaybackStatePaused\n");
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setCtrlViewHidden:) object:NULL];
     }
     else if (playbackState == ESMediaPlaybackStateInterrupted) {
         printf("playbackState:\tESMediaPlaybackStateInterrupted\n");
@@ -197,7 +219,6 @@
     }
 }
 
-
 #pragma mark - Player
 - (NSTimeInterval)currentPlaybackTime {
     return [_player currentPlaybackTime];
@@ -213,6 +234,18 @@
 }
 - (ESMediaLoadState)loadState {
     return (ESMediaLoadState)[_player loadState];
+}
+
+#pragma mark - set 
+- (void)setAutoHiddenTimeinterval:(NSTimeInterval)autoHiddenTimeinterval {
+    _autoHiddenTimeinterval = autoHiddenTimeinterval;
+    if (!self.window) {
+        return;
+    }
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setCtrlViewHidden:) object:NULL];
+    if (_autoHiddenTimeinterval > 0) {
+        [self performSelector:@selector(setCtrlViewHidden:) withObject:@(YES) afterDelay:_autoHiddenTimeinterval];
+    }
 }
 
 

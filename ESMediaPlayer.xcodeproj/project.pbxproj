@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		6E918BEB1DFFF67E0027CD03 /* build */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 6E918BEE1DFFF67E0027CD03 /* Build configuration list for PBXAggregateTarget "build" */;
+			buildPhases = (
+				6E918BEF1DFFF68E0027CD03 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = build;
+			productName = build;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		6E18EE481DF14AEF00BAA6CE /* ESMediaPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E18EE461DF14AEF00BAA6CE /* ESMediaPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E18EE561DF14AFE00BAA6CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E18EE551DF14AFE00BAA6CE /* main.m */; };
@@ -277,6 +291,11 @@
 						DevelopmentTeam = 959Q9RL588;
 						ProvisioningStyle = Automatic;
 					};
+					6E918BEB1DFFF67E0027CD03 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 959Q9RL588;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 6E18EE3D1DF14AEE00BAA6CE /* Build configuration list for PBXProject "ESMediaPlayer" */;
@@ -294,6 +313,7 @@
 			targets = (
 				6E18EE421DF14AEE00BAA6CE /* ESMediaPlayer */,
 				6E18EE511DF14AFE00BAA6CE /* ESMediaPlayerDemo */,
+				6E918BEB1DFFF67E0027CD03 /* build */,
 			);
 		};
 /* End PBXProject section */
@@ -321,6 +341,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6E918BEF1DFFF68E0027CD03 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FMK_NAME=ESMediaPlayer\n\n#FMK_NAME=${PROJECT_NAME}\n\n# Install dir will be the final output to the framework.\n\n# The following line create it in the root folder of the current project.\n\nINSTALL_DIR=${SRCROOT}/Products/${FMK_NAME}.framework\n\n# Working dir will be deleted after the framework creation.\n\nWRK_DIR=build\n\nDEVICE_DIR=${WRK_DIR}/Release-iphoneos/${FMK_NAME}.framework\n\nSIMULATOR_DIR=${WRK_DIR}/Debug-iphonesimulator/${FMK_NAME}.framework\n\n# -configuration ${CONFIGURATION}\n\n# Clean and Building both architectures.\n\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphoneos clean build\n\nxcodebuild -configuration \"Debug\" -target \"${FMK_NAME}\" -sdk iphonesimulator clean build\n\n# Cleaning the oldest.\n\nif [ -d \"${INSTALL_DIR}\" ]\n\nthen\n\nrm -rf \"${INSTALL_DIR}\"\n\nfi\n\nmkdir -p \"${INSTALL_DIR}\"\n\ncp -R \"${DEVICE_DIR}/\" \"${INSTALL_DIR}/\"\n\n# Uses the Lipo Tool to merge both binary files (i386 + armv6/armv7) into one Universal final product.\n\nlipo -create \"${DEVICE_DIR}/${FMK_NAME}\" \"${SIMULATOR_DIR}/${FMK_NAME}\" -output \"${INSTALL_DIR}/${FMK_NAME}\"\n\n#rm -r \"${WRK_DIR}\"\n\nopen \"${INSTALL_DIR}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6E18EE3E1DF14AEE00BAA6CE /* Sources */ = {
@@ -550,6 +586,22 @@
 			};
 			name = Release;
 		};
+		6E918BEC1DFFF67E0027CD03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 959Q9RL588;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6E918BED1DFFF67E0027CD03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 959Q9RL588;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -579,6 +631,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		6E918BEE1DFFF67E0027CD03 /* Build configuration list for PBXAggregateTarget "build" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E918BEC1DFFF67E0027CD03 /* Debug */,
+				6E918BED1DFFF67E0027CD03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

@@ -37,6 +37,8 @@
 
 - (void)stop;
 
+- (void)shutdown;
+
 /**
  设置控制视图隐藏
 

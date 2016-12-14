@@ -102,6 +102,18 @@
     }
 }
 
+- (void)shutdown {
+    for (id<ESMediaPlayerCtrlAble> ctrl in _ctrls) {
+        if ([ctrl isKindOfClass:[UIView class]]) {
+            [((UIView *)ctrl) removeFromSuperview];
+        }
+    }
+    _ctrls = NULL;
+    [_player shutdown];
+    [_player.view removeFromSuperview];
+    _player = NULL;
+}
+
 - (void)setCtrlViewHidden:(NSNumber *)hidden {
     BOOL isCanHideCtrlView = YES;
     for (id<ESMediaPlayerCtrlAble> ctrl  in _ctrls) {
@@ -127,16 +139,15 @@
 }
 
 - (void)addMediaCtrl:(id<ESMediaPlayerCtrlAble>)ctrl {
-    if ([ctrl isKindOfClass:[UIView class]]) {
-        [self addSubview:(UIView *)ctrl];
-    }
     if (![ctrl conformsToProtocol:NSProtocolFromString(@"ESMediaPlayerCtrlAble")]) {
         return;
+    }
+    if ([ctrl isKindOfClass:[UIView class]]) {
+        [self addSubview:(UIView *)ctrl];
     }
     [ctrl setPlayerView:self];
     [_ctrls addObject:ctrl];
 }
-
 
 /**
  初始化播放器
@@ -262,6 +273,7 @@
 - (NSArray<id<ESMediaPlayerCtrlAble>> *)ctrls {
     return [_ctrls copy];
 }
+
 
 #pragma mark - help
 

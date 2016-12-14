@@ -30,9 +30,6 @@
     [self addURLsWithExtension:@"flv"];
     
     [self.view addSubview:self.player];
-    
-    [self.player play:[NSURL URLWithString:@"http://dianbo.wsdemo.zego.im/livestream-zegotest-2873169708-LVSID16121481622492980--20161213174722.m3u8"]];
-    
 }
 
 

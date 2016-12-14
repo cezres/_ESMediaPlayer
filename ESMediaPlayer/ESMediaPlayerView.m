@@ -19,6 +19,7 @@
 {
     id<IJKMediaPlayback> _player;
     NSMutableArray<id<ESMediaPlayerCtrlAble>> *_ctrls;
+    CGSize _tempSize;
 }
 
 @property (strong, nonatomic) NSString *MIMEType;
@@ -31,12 +32,14 @@
 
 - (instancetype)init {
     if (self = [super init]) {
+        self.clipsToBounds = YES;
+        
         self.backgroundColor = [UIColor blackColor];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playBackStateChanged:) name:IJKMPMoviePlayerPlaybackStateDidChangeNotification object:NULL];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playLoadStateChanged:) name:IJKMPMoviePlayerLoadStateDidChangeNotification object:NULL];
         
         _ctrls = [NSMutableArray array];
-        _autoHiddenTimeinterval = 4;
+        _autoHiddenTimeinterval = 6;
         
         [self addMediaCtrl:[[ESMediaBottomView alloc] init]];
         [self addMediaCtrl:[[ESMediaGestureRecognizer alloc] init]];
@@ -50,13 +53,24 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    _player.view.frame = self.bounds;
-    _audioArtworkView.frame = self.bounds;
-    for (id<ESMediaPlayerCtrlAble> ctrl  in _ctrls) {
-        if ([ctrl respondsToSelector:@selector(layoutWithPlayerBounds:)]) {
-            [ctrl layoutWithPlayerBounds:self.bounds];
+    
+    if (_player && !CGRectEqualToRect(_player.view.frame, self.bounds)) {
+        _player.view.frame = self.bounds;
+    }
+    if (_audioArtworkView && !CGRectEqualToRect(_audioArtworkView.frame, self.bounds)) {
+        _audioArtworkView.frame = self.bounds;
+    }
+    
+    if (!CGSizeEqualToSize(self.bounds.size, _tempSize)) {
+        for (id<ESMediaPlayerCtrlAble> ctrl  in _ctrls) {
+            if ([ctrl respondsToSelector:@selector(layoutWithPlayerBounds:)]) {
+                [ctrl layoutWithPlayerBounds:self.bounds];
+            }
         }
     }
+    _tempSize = self.bounds.size;
+    
+    
 }
 
 - (void)willMoveToWindow:(UIWindow *)newWindow {
@@ -134,7 +148,7 @@
         }
     }
     if (!_isCtrlViewHidden && _autoHiddenTimeinterval > 0 && _player.isPlaying) {
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setCtrlViewHidden:) object:NULL];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setCtrlViewHidden:) object:@(YES)];
         [self performSelector:@selector(setCtrlViewHidden:) withObject:@(YES) afterDelay:_autoHiddenTimeinterval];
     }
 }
@@ -203,17 +217,18 @@
     IJKMPMoviePlaybackState playbackState = [_player playbackState];
     if (playbackState == ESMediaPlaybackStateStopped) {
         printf("playbackState:\tESMediaPlaybackStateStopped\n");
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setCtrlViewHidden:) object:NULL];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setCtrlViewHidden:) object:@(YES)];
     }
     else if (playbackState == ESMediaPlaybackStatePlaying) {
         printf("playbackState:\tESMediaPlaybackStatePlaying\n");
         if (!_isCtrlViewHidden && _autoHiddenTimeinterval > 0) {
+            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setCtrlViewHidden:) object:@(YES)];
             [self performSelector:@selector(setCtrlViewHidden:) withObject:@(YES) afterDelay:_autoHiddenTimeinterval];
         }
     }
     else if (playbackState == ESMediaPlaybackStatePaused) {
         printf("playbackState:\tESMediaPlaybackStatePaused\n");
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setCtrlViewHidden:) object:NULL];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setCtrlViewHidden:) object:@(YES)];
     }
     else if (playbackState == ESMediaPlaybackStateInterrupted) {
         printf("playbackState:\tESMediaPlaybackStateInterrupted\n");

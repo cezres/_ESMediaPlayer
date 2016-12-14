@@ -51,7 +51,10 @@ typedef NS_ENUM(NSInteger, PanGestureMode) {
 }
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)tapGesture {
-    [_playerView setCtrlViewHidden:@(!_playerView.isCtrlViewHidden)];
+    if (_playerView.playbackState == ESMediaPlaybackStatePlaying ||
+        _playerView.playbackState == ESMediaPlaybackStatePaused) {
+        [_playerView setCtrlViewHidden:@(!_playerView.isCtrlViewHidden)];
+    }
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)panGesture {

@@ -7,10 +7,15 @@
 //
 
 #import "ESMediaPlayerViewController.h"
+#import "ESMediaPlayerIcon.h"
 
 @interface ESMediaPlayerViewController ()
+<ESMediaPlayerCtrlAble>
 
 @property (strong, nonatomic) UIVisualEffectView *topView;
+@property (strong, nonatomic) UILabel *titleLabel;
+@property (strong, nonatomic) UIButton *backButton;
+
 
 @end
 
@@ -33,14 +38,33 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view addSubview:_playerView];
+    [self.topView addSubview:self.backButton];
+    [self.topView addSubview:self.titleLabel];
     [self.view addSubview:self.topView];
+    
+    [self.playerView addMediaCtrl:self];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.playerView shutdown];
 }
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    _playerView.frame = self.view.bounds;
-    _topView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
+    if (!CGSizeEqualToSize(self.view.bounds.size, _playerView.bounds.size)) {
+        _playerView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+        _topView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
+        _backButton.frame = CGRectMake(15, (_topView.bounds.size.height-30)/2, 30, 30);
+        CGFloat titleX = 15 + 30 + 15;
+        _titleLabel.frame = CGRectMake(titleX, (_topView.bounds.size.height-20), _topView.frame.size.width - titleX - 15, 20);
+    }
 }
+
+- (UIStatusBarStyle)preferredStatusBarStyle; {
+    return UIStatusBarStyleLightContent;
+}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation; {
     return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
@@ -50,36 +74,47 @@
     return UIInterfaceOrientationMaskLandscape;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 - (void)onClickBack {
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - ESMediaPlayerCtrlAble
+- (void)setCtrlViewHidden:(BOOL)hidden {
+    if (hidden) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.topView.transform = CGAffineTransformMakeTranslation(0, -44);
+        }];
+    }
+    else {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.topView.transform = CGAffineTransformIdentity;
+        }];
+    }
 }
-*/
+
 
 - (UIVisualEffectView *)topView {
     if (!_topView) {
         _topView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
-        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [backButton setImage:[UIImage imageNamed:@"hd_idct_back"] forState:UIControlStateNormal];
-        [backButton addTarget:self action:@selector(onClickBack) forControlEvents:UIControlEventTouchUpInside];
-        backButton.frame = CGRectMake(10, (44-26)/2, 26, 26);
-        [_topView addSubview:backButton];
     }
     return _topView;
+}
+
+- (UIButton *)backButton {
+    if (!_backButton) {
+        _backButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _backButton.tintColor = [UIColor whiteColor];
+        [_backButton setImage:[ESMediaPlayerIcon iconWithName:@"hd_idct_back"] forState:UIControlStateNormal];
+        [_backButton addTarget:self action:@selector(onClickBack) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _backButton;
+}
+- (UILabel *)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [[UILabel alloc] init];
+    }
+    return _titleLabel;
 }
 
 @end

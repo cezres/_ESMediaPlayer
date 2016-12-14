@@ -49,6 +49,8 @@
 		6E20C7131DF97251006A7A16 /* ESMediaProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E20C7111DF97251006A7A16 /* ESMediaProgressHUD.h */; };
 		6E20C7141DF97251006A7A16 /* ESMediaProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E20C7121DF97251006A7A16 /* ESMediaProgressHUD.m */; };
 		6E20C7171DF97FB5006A7A16 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E20C7161DF97FB5006A7A16 /* TestViewController.m */; };
+		6EB54FDD1E0166450058EC08 /* ESMediaPlayerIcon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB54FDB1E0166450058EC08 /* ESMediaPlayerIcon.h */; };
+		6EB54FDE1E0166450058EC08 /* ESMediaPlayerIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB54FDC1E0166450058EC08 /* ESMediaPlayerIcon.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,8 @@
 		6E20C7121DF97251006A7A16 /* ESMediaProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESMediaProgressHUD.m; sourceTree = "<group>"; };
 		6E20C7151DF97FB5006A7A16 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		6E20C7161DF97FB5006A7A16 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		6EB54FDB1E0166450058EC08 /* ESMediaPlayerIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESMediaPlayerIcon.h; sourceTree = "<group>"; };
+		6EB54FDC1E0166450058EC08 /* ESMediaPlayerIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESMediaPlayerIcon.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,8 @@
 				6E1BB2A01DF30D6E00D7DF8F /* ESMediaGestureRecognizer.m */,
 				6E20C7111DF97251006A7A16 /* ESMediaProgressHUD.h */,
 				6E20C7121DF97251006A7A16 /* ESMediaProgressHUD.m */,
+				6EB54FDB1E0166450058EC08 /* ESMediaPlayerIcon.h */,
+				6EB54FDC1E0166450058EC08 /* ESMediaPlayerIcon.m */,
 				6E18EE8A1DF14DB900BAA6CE /* icon.bundle */,
 			);
 			path = ESMediaPlayer;
@@ -230,6 +236,7 @@
 				6E18EE8E1DF150F000BAA6CE /* ESMediaBottomView.h in Headers */,
 				6E18EE751DF14B3700BAA6CE /* ESMediaPlayerView.h in Headers */,
 				6E1BB2A11DF30D6E00D7DF8F /* ESMediaGestureRecognizer.h in Headers */,
+				6EB54FDD1E0166450058EC08 /* ESMediaPlayerIcon.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +374,7 @@
 				6E20C7141DF97251006A7A16 /* ESMediaProgressHUD.m in Sources */,
 				6E18EE7A1DF14B4900BAA6CE /* ESMediaPlayerViewController.m in Sources */,
 				6E18EE8F1DF150F000BAA6CE /* ESMediaBottomView.m in Sources */,
+				6EB54FDE1E0166450058EC08 /* ESMediaPlayerIcon.m in Sources */,
 				6E18EE761DF14B3700BAA6CE /* ESMediaPlayerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -639,6 +647,7 @@
 				6E918BED1DFFF67E0027CD03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

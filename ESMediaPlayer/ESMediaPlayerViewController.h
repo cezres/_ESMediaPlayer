@@ -11,8 +11,7 @@
 
 @interface ESMediaPlayerViewController : UIViewController
 
-@property (strong, nonatomic, readonly) ESMediaPlayerView *playerView;
-
+@property (strong, nonatomic) ESMediaPlayerView *playerView;
 
 + (instancetype)playerInController:(UIViewController *)viewController;
 

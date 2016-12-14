@@ -10,6 +10,7 @@
 #import <IJKMediaFramework/IJKMediaFramework.h>
 #import "ESMediaPlayerView.h"
 #import "ESMediaProgressHUD.h"
+#import "ESMediaPlayerIcon.h"
 
 /**
  进度条
@@ -134,14 +135,42 @@
 }
 
 - (void)setCtrlViewHidden:(BOOL)hidden {
-    self.hidden = hidden;
+    if (hidden) {
+        [self.layer removeAllAnimations];
+        [UIView animateWithDuration:0.3 animations:^{
+            self.transform = CGAffineTransformMakeTranslation(0, 49);
+        } completion:^(BOOL finished) {
+            if (!finished) {
+                return;
+            }
+            [UIView animateWithDuration:0.2 animations:^{
+                self.alpha = 0;
+            } completion:^(BOOL finished) {
+                self.alpha = 1;
+                if (finished) {
+                    self.hidden = YES;
+                }
+            }];
+        }];
+    }
+    else {
+        [self.layer removeAllAnimations];
+        self.hidden = NO;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            if (finished) {
+                self.hidden = NO;
+            }
+        }];
+    }
 }
 
 - (void)layoutWithPlayerBounds:(CGRect)bounds {
     self.frame = CGRectMake(0, bounds.size.height - 49 - 50, bounds.size.width, 49 + 50);
     _playSwitchButton.frame = CGRectMake(self.bounds.size.width - 10 - 55, 0, 55, 50);
-    _progressContentView.frame = CGRectMake(0, 50, self.bounds.size.width, self.bounds.size.height-50);
     
+    _progressContentView.frame = CGRectMake(0, 50, self.bounds.size.width, 49);
     _progress.frame = CGRectMake(15+55+15, 0, _progressContentView.bounds.size.width-85-85, 49);
     _currentTimeLabel.frame = CGRectMake(15, (49 - 14) / 2, 55, 14);
     _durationLabel.frame = CGRectMake(_progressContentView.bounds.size.width - 15 - 55, (49 - 14) / 2, 55, 14);
@@ -162,35 +191,19 @@
 
 - (void)playerBackStateChanged:(ESMediaPlaybackState)playbackState {
     if (playbackState == ESMediaPlaybackStatePlaying) {
-        [self refresh];
-        [self.playSwitchButton setImage:[self imageWithName:@"player_pause"] forState:UIControlStateNormal];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(refresh) object:NULL];
+        [self performSelector:@selector(refresh) withObject:NULL afterDelay:0.5];
+        [self.playSwitchButton setImage:[ESMediaPlayerIcon iconWithName:@"player_pause"] forState:UIControlStateNormal];
     }
     else if (playbackState == ESMediaPlaybackStatePaused) {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(refresh) object:NULL];
-        [self.playSwitchButton setImage:[self imageWithName:@"player_play"] forState:UIControlStateNormal];
+        [self.playSwitchButton setImage:[ESMediaPlayerIcon iconWithName:@"player_play"] forState:UIControlStateNormal];
     }
     else if (playbackState == ESMediaPlaybackStateStopped) {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(refresh) object:NULL];
         [self reset];
-        [self.playSwitchButton setImage:[self imageWithName:@"player_play"] forState:UIControlStateNormal];
+        [self.playSwitchButton setImage:[ESMediaPlayerIcon iconWithName:@"player_play"] forState:UIControlStateNormal];
     }
-}
-
-#pragma mark - help
-- (UIImage *)imageWithName:(NSString *)imageName {
-    static NSBundle *iconBundle;
-    if (!iconBundle) {
-        NSBundle *currentBundle = [NSBundle bundleForClass:[self class]];
-        NSURL *iconBundleURL = [currentBundle URLForResource:@"icon" withExtension:@"bundle"];
-        iconBundle = [NSBundle bundleWithURL:iconBundleURL];
-    }
-    NSString *fileName = [NSString stringWithFormat:@"%@@%ldx", imageName, (long)[UIScreen mainScreen].scale];
-    NSURL *imageURL = [iconBundle URLForResource:fileName withExtension:@"png"];
-    if (!imageURL) {
-        imageURL = [iconBundle URLForResource:imageName withExtension:@"png"];
-    }
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    return [UIImage imageWithData:imageData];
 }
 
 @end

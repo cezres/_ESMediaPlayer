@@ -73,17 +73,6 @@
     
 }
 
-- (void)willMoveToWindow:(UIWindow *)newWindow {
-    if (newWindow) {
-        [_player prepareToPlay];
-        [self setCtrlViewHidden:@(NO)];
-    }
-    else {
-        [_player shutdown];
-    }
-}
-
-
 - (BOOL)play:(NSURL *)url {
     if ([_url.absoluteString isEqualToString:url.absoluteString]) {
         [self play];
@@ -92,9 +81,7 @@
     [self stop];
     _url = url;
     [self initPlayer];
-    if (self.window) {
-        [_player prepareToPlay];
-    }
+    [_player prepareToPlay];
     return YES;
 }
 - (void)play {

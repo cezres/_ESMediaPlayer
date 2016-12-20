@@ -74,7 +74,7 @@
 }
 
 - (BOOL)play:(NSURL *)url {
-    if ([_url.absoluteString isEqualToString:url.absoluteString]) {
+    if (self.playbackState == ESMediaPlaybackStatePaused && [_url.absoluteString isEqualToString:url.absoluteString]) {
         [self play];
         return YES;
     }

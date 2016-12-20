@@ -30,6 +30,7 @@
     [self addURLsWithExtension:@"flv"];
     
     [self.view addSubview:self.player];
+    
 }
 
 

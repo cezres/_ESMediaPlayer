@@ -51,40 +51,55 @@ typedef NS_ENUM(NSInteger, PanGestureMode) {
 }
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)tapGesture {
-    if (_playerView.playbackState == ESMediaPlaybackStatePlaying ||
-        _playerView.playbackState == ESMediaPlaybackStatePaused) {
+//    if (_playerView.playbackState == ESMediaPlaybackStatePlaying ||
+//        _playerView.playbackState == ESMediaPlaybackStatePaused) {
         [_playerView setCtrlViewHidden:@(!_playerView.isCtrlViewHidden)];
-    }
+//    }
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)panGesture {
     CGPoint translation = [panGesture translationInView:_playerView];
     CGPoint location = [panGesture locationInView:_playerView];
-    if (panGesture.state == UIGestureRecognizerStateBegan) {
-        if (location.x < panGesture.view.bounds.size.width / 2 &&
-            fabs(translation.y) >= fabs(translation.x)) {
-            _panGestureMode = PanGestureModeBrightness;
-            NSLog(@"亮度");
+    
+    
+    if (_panGestureMode == PanGestureModeNone) {
+        if (fabs(translation.y) > fabs(translation.x)) {
+            if (location.x < panGesture.view.bounds.size.width / 2) {
+                _panGestureMode = PanGestureModeBrightness;
+                NSLog(@"亮度");
+            }
+            else {
+                _panGestureMode = PanGestureModeVolume;
+                NSLog(@"音量");
+            }
         }
-        else if (location.x > panGesture.view.bounds.size.width/2 &&
-                 fabs(translation.y) >= fabs(translation.x)) {
-            _panGestureMode = PanGestureModeVolume;
-            NSLog(@"音量");
+        else if (fabs(translation.x) > fabs(translation.y)) {
+            if (_playerView.playbackState == ESMediaPlaybackStatePlaying ||
+                _playerView.playbackState == ESMediaPlaybackStatePaused) {
+                _panGestureMode = PanGestureModePlayProgress;
+                _playTime = [_playerView currentPlaybackTime];
+                NSLog(@"播放进度");
+            }
         }
         else {
-            _panGestureMode = PanGestureModePlayProgress;
-            _playTime = [_playerView currentPlaybackTime];
-            NSLog(@"播放进度");
+            return;
         }
     }
-    else if (panGesture.state == UIGestureRecognizerStateChanged) {
+    
+    if (panGesture.state == UIGestureRecognizerStateChanged) {
         if (_panGestureMode == PanGestureModePlayProgress) {
-            CGFloat offset = translation.x / panGesture.view.bounds.size.width * _playerView.duration;
-            CGFloat newTime = _playTime + offset;
-            newTime = newTime < 0 ? 0 : newTime > _playerView.duration ? _playerView.duration : newTime;
-            [ESMediaProgressHUD showHUDWithCurrentTime:newTime duration:_playerView.duration];
+            if (_playerView.playbackState == ESMediaPlaybackStatePlaying ||
+                _playerView.playbackState == ESMediaPlaybackStatePaused) {
+                CGFloat offset = translation.x / panGesture.view.bounds.size.width * _playerView.duration;
+                CGFloat newTime = _playTime + offset;
+                newTime = newTime < 0 ? 0 : newTime > _playerView.duration ? _playerView.duration : newTime;
+                [ESMediaProgressHUD showHUDWithCurrentTime:newTime duration:_playerView.duration];
+            }
+            else {
+                [ESMediaProgressHUD hidden];
+            }
         }
-        else {
+        else if (_panGestureMode != PanGestureModeNone) {
             CGFloat offset = -translation.y / 200;
             if (_panGestureMode == PanGestureModeBrightness) {
                 [UIScreen mainScreen].brightness += offset;
@@ -100,7 +115,8 @@ typedef NS_ENUM(NSInteger, PanGestureMode) {
         }
     }
     else if (panGesture.state == UIGestureRecognizerStateEnded) {
-        if (_panGestureMode == PanGestureModePlayProgress) {
+        if (_panGestureMode == PanGestureModePlayProgress && (_playerView.playbackState == ESMediaPlaybackStatePlaying ||
+                                                              _playerView.playbackState == ESMediaPlaybackStatePaused)) {
             CGFloat offset = translation.x / panGesture.view.bounds.size.width * _playerView.duration;
             CGFloat newTime = _playTime + offset;
             newTime = newTime < 0 ? 0 : newTime > _playerView.duration ? _playerView.duration : newTime;

@@ -74,7 +74,9 @@
 }
 
 - (BOOL)play:(NSURL *)url {
-    if (self.playbackState == ESMediaPlaybackStatePaused && [_url.absoluteString isEqualToString:url.absoluteString]) {
+    if (self.playbackState == ESMediaPlaybackStatePaused &&
+        self.loadState & IJKMPMovieLoadStatePlayable &&
+        [_url.absoluteString isEqualToString:url.absoluteString]) {
         [self play];
         return YES;
     }
@@ -239,6 +241,9 @@
 }
 - (void)setCurrentPlaybackTime:(NSTimeInterval)currentPlaybackTime {
     [_player setCurrentPlaybackTime:currentPlaybackTime];
+    if (_player.playbackState == IJKMPMoviePlaybackStatePaused) {
+        [_player play];
+    }
 }
 - (NSTimeInterval)duration {
     return [_player duration];

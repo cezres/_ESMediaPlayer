@@ -167,7 +167,12 @@
 }
 
 - (void)layoutWithPlayerBounds:(CGRect)bounds {
-    self.frame = CGRectMake(0, bounds.size.height - 49 - 50, bounds.size.width, 49 + 50);
+    if (self.hidden) {
+        self.frame = CGRectMake(0, bounds.size.height - 50, bounds.size.width, 49 + 50);
+    }
+    else {
+        self.frame = CGRectMake(0, bounds.size.height - 49 - 50, bounds.size.width, 49 + 50);
+    }
     _playSwitchButton.frame = CGRectMake(self.bounds.size.width - 10 - 55, 0, 55, 50);
     
     _progressContentView.frame = CGRectMake(0, 50, self.bounds.size.width, 49);

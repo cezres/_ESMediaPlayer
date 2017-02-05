@@ -58,7 +58,7 @@
     
     ESMediaPlayerViewController *player = [ESMediaPlayerViewController playerInController:self];
     [player.playerView play:_urls.firstObject];
-    
+    player.title = @"故梦";
 //    TestViewController *test = [[TestViewController alloc] init];
 //    [self presentViewController:test animated:YES completion:NULL];
     

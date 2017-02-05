@@ -27,6 +27,11 @@
     return controller;
 }
 
+- (void)setTitle:(NSString *)title {
+    [super setTitle:title];
+    self.titleLabel.text = title;
+}
+
 - (instancetype)init {
     if (self = [super init]) {
         _playerView = [[ESMediaPlayerView alloc] init];
@@ -56,8 +61,8 @@
         _playerView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
         _topView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
         _backButton.frame = CGRectMake(15, (_topView.bounds.size.height-30)/2, 30, 30);
-        CGFloat titleX = 15 + 30 + 15;
-        _titleLabel.frame = CGRectMake(titleX, (_topView.bounds.size.height-20), _topView.frame.size.width - titleX - 15, 20);
+        CGFloat titleX = 15 + 30 + 20;
+        _titleLabel.frame = CGRectMake(titleX, (_topView.bounds.size.height-20) / 2, _topView.frame.size.width - titleX - 15, 20);
     }
 }
 
@@ -113,6 +118,7 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
+        _titleLabel.textColor = [UIColor whiteColor];
     }
     return _titleLabel;
 }

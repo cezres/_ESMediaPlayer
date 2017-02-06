@@ -237,6 +237,9 @@
 
 #pragma mark - Player
 - (NSTimeInterval)currentPlaybackTime {
+    if (_player.playbackState == IJKMPMoviePlaybackStateStopped) {
+        return 0;
+    }
     return [_player currentPlaybackTime];
 }
 - (void)setCurrentPlaybackTime:(NSTimeInterval)currentPlaybackTime {

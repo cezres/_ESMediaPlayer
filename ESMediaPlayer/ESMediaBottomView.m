@@ -86,7 +86,6 @@
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(refresh) object:NULL];
         [self performSelector:@selector(refresh) withObject:NULL afterDelay:0.5];
     }
-    
 }
 
 - (void)onClickPlaySwitch {

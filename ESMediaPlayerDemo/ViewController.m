@@ -54,11 +54,15 @@
     }
 }
 - (IBAction)stop:(id)sender {
+    if (![_urls count]) {
+        return;
+    }
+    
 //    [_player stop];
     
-    ESMediaPlayerViewController *player = [ESMediaPlayerViewController playerInController:self];
-    [player.playerView play:_urls.firstObject];
-    player.title = @"故梦";
+    [ESMediaPlayerViewController play:_urls.lastObject title:@"「你的名字」五月天【如果我们不曾相遇】" inController:self];
+    
+    
 //    TestViewController *test = [[TestViewController alloc] init];
 //    [self presentViewController:test animated:YES completion:NULL];
     

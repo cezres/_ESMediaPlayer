@@ -21,6 +21,13 @@
 
 @implementation ESMediaPlayerViewController
 
++ (instancetype)play:(NSURL *)url title:(NSString *)title inController:(UIViewController *)viewController {
+    ESMediaPlayerViewController *controller = [self playerInController:viewController];
+    [controller.playerView play:url];
+    controller.title = title;
+    return controller;
+}
+
 + (instancetype)playerInController:(UIViewController *)viewController {
     ESMediaPlayerViewController *controller = [[ESMediaPlayerViewController alloc] init];
     [viewController presentViewController:controller animated:YES completion:NULL];

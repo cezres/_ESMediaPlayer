@@ -8,6 +8,7 @@ ESMediaPlayer/Librarys
 ## Build generated
 build/
 DerivedData/
+Products/
 
 ## Various settings
 *.pbxuser

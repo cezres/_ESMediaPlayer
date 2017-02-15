@@ -28,17 +28,12 @@
 		6E18EE5F1DF14AFE00BAA6CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E18EE5D1DF14AFE00BAA6CE /* Main.storyboard */; };
 		6E18EE611DF14AFE00BAA6CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E18EE601DF14AFE00BAA6CE /* Assets.xcassets */; };
 		6E18EE641DF14AFE00BAA6CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E18EE621DF14AFE00BAA6CE /* LaunchScreen.storyboard */; };
-		6E18EE6B1DF14B1500BAA6CE /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E18EE6A1DF14B1500BAA6CE /* IJKMediaFramework.framework */; };
 		6E18EE701DF14B2100BAA6CE /* 6282404.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6E18EE6D1DF14B2100BAA6CE /* 6282404.mp4 */; };
 		6E18EE711DF14B2100BAA6CE /* 双笙 - 故梦.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6E18EE6E1DF14B2100BAA6CE /* 双笙 - 故梦.mp3 */; };
 		6E18EE751DF14B3700BAA6CE /* ESMediaPlayerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E18EE731DF14B3700BAA6CE /* ESMediaPlayerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E18EE761DF14B3700BAA6CE /* ESMediaPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E18EE741DF14B3700BAA6CE /* ESMediaPlayerView.m */; };
 		6E18EE791DF14B4900BAA6CE /* ESMediaPlayerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E18EE771DF14B4900BAA6CE /* ESMediaPlayerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E18EE7A1DF14B4900BAA6CE /* ESMediaPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E18EE781DF14B4900BAA6CE /* ESMediaPlayerViewController.m */; };
-		6E18EE7B1DF14B5C00BAA6CE /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E18EE6A1DF14B1500BAA6CE /* IJKMediaFramework.framework */; };
-		6E18EE7C1DF14B5C00BAA6CE /* IJKMediaFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6E18EE6A1DF14B1500BAA6CE /* IJKMediaFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6E18EE7E1DF14B5F00BAA6CE /* ESMediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E18EE431DF14AEF00BAA6CE /* ESMediaPlayer.framework */; };
-		6E18EE7F1DF14B5F00BAA6CE /* ESMediaPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6E18EE431DF14AEF00BAA6CE /* ESMediaPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6E18EE8B1DF14DB900BAA6CE /* icon.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6E18EE8A1DF14DB900BAA6CE /* icon.bundle */; };
 		6E18EE8E1DF150F000BAA6CE /* ESMediaBottomView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E18EE8C1DF150F000BAA6CE /* ESMediaBottomView.h */; };
 		6E18EE8F1DF150F000BAA6CE /* ESMediaBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E18EE8D1DF150F000BAA6CE /* ESMediaBottomView.m */; };
@@ -49,12 +44,20 @@
 		6E20C7131DF97251006A7A16 /* ESMediaProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E20C7111DF97251006A7A16 /* ESMediaProgressHUD.h */; };
 		6E20C7141DF97251006A7A16 /* ESMediaProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E20C7121DF97251006A7A16 /* ESMediaProgressHUD.m */; };
 		6E20C7171DF97FB5006A7A16 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E20C7161DF97FB5006A7A16 /* TestViewController.m */; };
+		6E9218101E4DB4C7000215C9 /* ESMediaPlayerView+Thumbnail.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E92180E1E4DB4C7000215C9 /* ESMediaPlayerView+Thumbnail.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E9218111E4DB4C7000215C9 /* ESMediaPlayerView+Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92180F1E4DB4C7000215C9 /* ESMediaPlayerView+Thumbnail.m */; };
+		6E9218131E4DB747000215C9 /* ESMediaPlayerView_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E9218121E4DB747000215C9 /* ESMediaPlayerView_Internal.h */; };
+		6E92A4481E53128400F06BAC /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E92A4471E53128400F06BAC /* IJKMediaFramework.framework */; };
+		6E92A44A1E53129900F06BAC /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E92A4471E53128400F06BAC /* IJKMediaFramework.framework */; };
+		6E92A44B1E53129900F06BAC /* IJKMediaFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6E92A4471E53128400F06BAC /* IJKMediaFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6EA231DD1E518DCE0003BFCA /* ESMediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E18EE431DF14AEF00BAA6CE /* ESMediaPlayer.framework */; };
+		6EA231DE1E518DCE0003BFCA /* ESMediaPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6E18EE431DF14AEF00BAA6CE /* ESMediaPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6EB54FDD1E0166450058EC08 /* ESMediaPlayerIcon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB54FDB1E0166450058EC08 /* ESMediaPlayerIcon.h */; };
 		6EB54FDE1E0166450058EC08 /* ESMediaPlayerIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB54FDC1E0166450058EC08 /* ESMediaPlayerIcon.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6E18EE801DF14B5F00BAA6CE /* PBXContainerItemProxy */ = {
+		6EA231DF1E518DCE0003BFCA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6E18EE3A1DF14AEE00BAA6CE /* Project object */;
 			proxyType = 1;
@@ -64,14 +67,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		6E18EE7D1DF14B5C00BAA6CE /* Embed Frameworks */ = {
+		6EA231E11E518DCE0003BFCA /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6E18EE7F1DF14B5F00BAA6CE /* ESMediaPlayer.framework in Embed Frameworks */,
-				6E18EE7C1DF14B5C00BAA6CE /* IJKMediaFramework.framework in Embed Frameworks */,
+				6EA231DE1E518DCE0003BFCA /* ESMediaPlayer.framework in Embed Frameworks */,
+				6E92A44B1E53129900F06BAC /* IJKMediaFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,7 +95,6 @@
 		6E18EE601DF14AFE00BAA6CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6E18EE631DF14AFE00BAA6CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6E18EE651DF14AFE00BAA6CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6E18EE6A1DF14B1500BAA6CE /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
 		6E18EE6D1DF14B2100BAA6CE /* 6282404.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 6282404.mp4; sourceTree = "<group>"; };
 		6E18EE6E1DF14B2100BAA6CE /* 双笙 - 故梦.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "双笙 - 故梦.mp3"; sourceTree = "<group>"; };
 		6E18EE731DF14B3700BAA6CE /* ESMediaPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESMediaPlayerView.h; sourceTree = "<group>"; };
@@ -110,6 +112,10 @@
 		6E20C7121DF97251006A7A16 /* ESMediaProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESMediaProgressHUD.m; sourceTree = "<group>"; };
 		6E20C7151DF97FB5006A7A16 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		6E20C7161DF97FB5006A7A16 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		6E92180E1E4DB4C7000215C9 /* ESMediaPlayerView+Thumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ESMediaPlayerView+Thumbnail.h"; sourceTree = "<group>"; };
+		6E92180F1E4DB4C7000215C9 /* ESMediaPlayerView+Thumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ESMediaPlayerView+Thumbnail.m"; sourceTree = "<group>"; };
+		6E9218121E4DB747000215C9 /* ESMediaPlayerView_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESMediaPlayerView_Internal.h; sourceTree = "<group>"; };
+		6E92A4471E53128400F06BAC /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
 		6EB54FDB1E0166450058EC08 /* ESMediaPlayerIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESMediaPlayerIcon.h; sourceTree = "<group>"; };
 		6EB54FDC1E0166450058EC08 /* ESMediaPlayerIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESMediaPlayerIcon.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,7 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E18EE6B1DF14B1500BAA6CE /* IJKMediaFramework.framework in Frameworks */,
+				6E92A4481E53128400F06BAC /* IJKMediaFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,8 +133,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E18EE7E1DF14B5F00BAA6CE /* ESMediaPlayer.framework in Frameworks */,
-				6E18EE7B1DF14B5C00BAA6CE /* IJKMediaFramework.framework in Frameworks */,
+				6EA231DD1E518DCE0003BFCA /* ESMediaPlayer.framework in Frameworks */,
+				6E92A44A1E53129900F06BAC /* IJKMediaFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +146,7 @@
 			children = (
 				6E18EE451DF14AEF00BAA6CE /* ESMediaPlayer */,
 				6E18EE531DF14AFE00BAA6CE /* ESMediaPlayerDemo */,
+				6E92A4461E53125C00F06BAC /* Librarys */,
 				6E18EE441DF14AEF00BAA6CE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -156,13 +163,15 @@
 		6E18EE451DF14AEF00BAA6CE /* ESMediaPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				6E18EE691DF14B1500BAA6CE /* Librarys */,
 				6E18EE461DF14AEF00BAA6CE /* ESMediaPlayer.h */,
 				6E18EE471DF14AEF00BAA6CE /* Info.plist */,
 				6E18EE771DF14B4900BAA6CE /* ESMediaPlayerViewController.h */,
 				6E18EE781DF14B4900BAA6CE /* ESMediaPlayerViewController.m */,
 				6E18EE731DF14B3700BAA6CE /* ESMediaPlayerView.h */,
 				6E18EE741DF14B3700BAA6CE /* ESMediaPlayerView.m */,
+				6E9218121E4DB747000215C9 /* ESMediaPlayerView_Internal.h */,
+				6E92180E1E4DB4C7000215C9 /* ESMediaPlayerView+Thumbnail.h */,
+				6E92180F1E4DB4C7000215C9 /* ESMediaPlayerView+Thumbnail.m */,
 				6E1ACDE81DF2797B009AC431 /* ESMediaPlayerProtocol.h */,
 				6E18EE8C1DF150F000BAA6CE /* ESMediaBottomView.h */,
 				6E18EE8D1DF150F000BAA6CE /* ESMediaBottomView.m */,
@@ -204,14 +213,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6E18EE691DF14B1500BAA6CE /* Librarys */ = {
-			isa = PBXGroup;
-			children = (
-				6E18EE6A1DF14B1500BAA6CE /* IJKMediaFramework.framework */,
-			);
-			path = Librarys;
-			sourceTree = "<group>";
-		};
 		6E18EE6C1DF14B2100BAA6CE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +221,14 @@
 				6E18EE6E1DF14B2100BAA6CE /* 双笙 - 故梦.mp3 */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		6E92A4461E53125C00F06BAC /* Librarys */ = {
+			isa = PBXGroup;
+			children = (
+				6E92A4471E53128400F06BAC /* IJKMediaFramework.framework */,
+			);
+			path = Librarys;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,9 +242,11 @@
 				6E18EE791DF14B4900BAA6CE /* ESMediaPlayerViewController.h in Headers */,
 				6E20C7131DF97251006A7A16 /* ESMediaProgressHUD.h in Headers */,
 				6E1ACDE91DF2797B009AC431 /* ESMediaPlayerProtocol.h in Headers */,
+				6E9218101E4DB4C7000215C9 /* ESMediaPlayerView+Thumbnail.h in Headers */,
 				6E18EE8E1DF150F000BAA6CE /* ESMediaBottomView.h in Headers */,
 				6E18EE751DF14B3700BAA6CE /* ESMediaPlayerView.h in Headers */,
 				6E1BB2A11DF30D6E00D7DF8F /* ESMediaGestureRecognizer.h in Headers */,
+				6E9218131E4DB747000215C9 /* ESMediaPlayerView_Internal.h in Headers */,
 				6EB54FDD1E0166450058EC08 /* ESMediaPlayerIcon.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,12 +279,12 @@
 				6E18EE4E1DF14AFE00BAA6CE /* Sources */,
 				6E18EE4F1DF14AFE00BAA6CE /* Frameworks */,
 				6E18EE501DF14AFE00BAA6CE /* Resources */,
-				6E18EE7D1DF14B5C00BAA6CE /* Embed Frameworks */,
+				6EA231E11E518DCE0003BFCA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6E18EE811DF14B5F00BAA6CE /* PBXTargetDependency */,
+				6EA231E01E518DCE0003BFCA /* PBXTargetDependency */,
 			);
 			name = ESMediaPlayerDemo;
 			productName = ESMediaPlayerDemo;
@@ -286,11 +297,12 @@
 		6E18EE3A1DF14AEE00BAA6CE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "翟泉";
 				TargetAttributes = {
 					6E18EE421DF14AEE00BAA6CE = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 959Q9RL588;
 						ProvisioningStyle = Automatic;
 					};
 					6E18EE511DF14AFE00BAA6CE = {
@@ -371,6 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E1BB2A21DF30D6E00D7DF8F /* ESMediaGestureRecognizer.m in Sources */,
+				6E9218111E4DB4C7000215C9 /* ESMediaPlayerView+Thumbnail.m in Sources */,
 				6E20C7141DF97251006A7A16 /* ESMediaProgressHUD.m in Sources */,
 				6E18EE7A1DF14B4900BAA6CE /* ESMediaPlayerViewController.m in Sources */,
 				6E18EE8F1DF150F000BAA6CE /* ESMediaBottomView.m in Sources */,
@@ -393,10 +406,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6E18EE811DF14B5F00BAA6CE /* PBXTargetDependency */ = {
+		6EA231E01E518DCE0003BFCA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6E18EE421DF14AEE00BAA6CE /* ESMediaPlayer */;
-			targetProxy = 6E18EE801DF14B5F00BAA6CE /* PBXContainerItemProxy */;
+			targetProxy = 6EA231DF1E518DCE0003BFCA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -438,6 +451,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -489,6 +503,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -521,17 +536,19 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 959Q9RL588;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ESMediaPlayer/Librarys",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)s",
 				);
 				INFOPLIST_FILE = ESMediaPlayer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = mh_dylib;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cezr.ESMediaPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -543,17 +560,19 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 959Q9RL588;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ESMediaPlayer/Librarys",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)s",
 				);
 				INFOPLIST_FILE = ESMediaPlayer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = mh_dylib;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cezr.ESMediaPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -567,7 +586,7 @@
 				DEVELOPMENT_TEAM = 959Q9RL588;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ESMediaPlayer/Librarys",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)s",
 				);
 				INFOPLIST_FILE = ESMediaPlayerDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -584,7 +603,7 @@
 				DEVELOPMENT_TEAM = 959Q9RL588;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ESMediaPlayer/Librarys",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)s",
 				);
 				INFOPLIST_FILE = ESMediaPlayerDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

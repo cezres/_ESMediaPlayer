@@ -48,19 +48,20 @@
         [_progress addTarget:self action:@selector(didSliderTouchUpOutside) forControlEvents:UIControlEventTouchUpOutside];
         [_progress addTarget:self action:@selector(didSliderTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
         [_progress addTarget:self action:@selector(didSliderValueChanged) forControlEvents:UIControlEventValueChanged];
+        _progress.enabled = NO;
         [_progressContentView addSubview:_progress];
         
         _currentTimeLabel = [[UILabel alloc] init];
         _currentTimeLabel.textColor = [UIColor whiteColor];
         _currentTimeLabel.font = [UIFont systemFontOfSize:12];
-        _currentTimeLabel.text = @"00:00";
+        _currentTimeLabel.text = @"--:--";
         _currentTimeLabel.textAlignment = NSTextAlignmentRight;
         [_progressContentView addSubview:_currentTimeLabel];
         
         _durationLabel = [[UILabel alloc] init];
         _durationLabel.textColor = [UIColor whiteColor];
         _durationLabel.font = [UIFont systemFontOfSize:12];
-        _durationLabel.text = @"00:00";
+        _durationLabel.text = @"--:--";
         [_progressContentView addSubview:_durationLabel];
         
         _playSwitchButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -84,7 +85,7 @@
     _currentTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)_playerView.currentPlaybackTime / 60, (int)_playerView.currentPlaybackTime % 60];
     if (!self.hidden && _playerView.playbackState == ESMediaPlaybackStatePlaying) {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(refresh) object:NULL];
-        [self performSelector:@selector(refresh) withObject:NULL afterDelay:0.5];
+        [self performSelector:@selector(refresh) withObject:NULL afterDelay:0.2];
     }
 }
 
@@ -182,31 +183,41 @@
 
 - (void)reset {
     _progress.value = 0;
-    _currentTimeLabel.text = @"00:00";
-    _durationLabel.text = @"00:00";
+    _currentTimeLabel.text = @"--:--";
+    _durationLabel.text = @"--:--";
 }
 
 - (void)playerLoadStateChanged:(ESMediaLoadState)loadState {
     if (loadState & ESMediaLoadStatePlayable) {
-        _progress.maximumValue = _playerView.duration;
-        _durationLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)_playerView.duration / 60, (int)_playerView.duration % 60];
+//        _progress.maximumValue = _playerView.duration;
+//        _durationLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)_playerView.duration / 60, (int)_playerView.duration % 60];
+        //self.progress.enabled = YES;
+    }
+    else {
+       // self.progress.enabled = NO;
     }
 }
 
 - (void)playerBackStateChanged:(ESMediaPlaybackState)playbackState {
     if (playbackState == ESMediaPlaybackStatePlaying) {
+        _progress.maximumValue = _playerView.duration;
+        _durationLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)_playerView.duration / 60, (int)_playerView.duration % 60];
+        
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(refresh) object:NULL];
         [self performSelector:@selector(refresh) withObject:NULL afterDelay:0.5];
         [self.playSwitchButton setImage:[ESMediaPlayerIcon iconWithName:@"player_pause"] forState:UIControlStateNormal];
+        self.progress.enabled = YES;
     }
     else if (playbackState == ESMediaPlaybackStatePaused) {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(refresh) object:NULL];
         [self.playSwitchButton setImage:[ESMediaPlayerIcon iconWithName:@"player_play"] forState:UIControlStateNormal];
+        self.progress.enabled = YES;
     }
     else if (playbackState == ESMediaPlaybackStateStopped) {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(refresh) object:NULL];
         [self reset];
         [self.playSwitchButton setImage:[ESMediaPlayerIcon iconWithName:@"player_play"] forState:UIControlStateNormal];
+        self.progress.enabled = NO;
     }
 }
 

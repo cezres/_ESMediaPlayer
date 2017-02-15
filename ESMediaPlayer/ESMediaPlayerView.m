@@ -7,12 +7,18 @@
 //
 
 #import "ESMediaPlayerView.h"
+#import "ESMediaPlayerView_Internal.h"
+
 #import <IJKMediaFramework/IJKMediaFramework.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AVFoundation/AVFoundation.h>
 
 #import "ESMediaBottomView.h"
 #import "ESMediaGestureRecognizer.h"
+
+
+
+
 
 
 @interface ESMediaPlayerView ()
@@ -25,6 +31,11 @@
 @property (strong, nonatomic) NSString *MIMEType;
 
 @property (weak, nonatomic) UIImageView *audioArtworkView;
+
+
+@property (assign, nonatomic) ESMediaPlaybackState playbackState;
+@property (assign, nonatomic) ESMediaLoadState loadState;
+
 
 @end
 
@@ -69,8 +80,6 @@
         }
     }
     _tempSize = self.bounds.size;
-    
-    
 }
 
 - (BOOL)play:(NSURL *)url {
@@ -157,12 +166,12 @@
  初始化播放器
  */
 - (void)initPlayer {
-    NSString *MIMEType = [self getMIMETypeWithFilePath:_url.path];
+    NSString *MIMEType = [ESMediaPlayerView getMIMETypeWithFilePath:_url.path];
     NSLog(@"文件类型: %@", MIMEType);
     if ([AVURLAsset isPlayableExtendedMIMEType:MIMEType]) {
         _player = [[IJKAVMoviePlayerController alloc] initWithContentURL:_url];
         if ([MIMEType hasPrefix:@"audio"]) {
-            self.audioArtworkView.image = [self getAudioArtworkWithURL:_url];
+            self.audioArtworkView.image = [ESMediaPlayerView getAudioArtworkWithURL:_url];
         }
     }
     else {
@@ -177,33 +186,52 @@
 
 
 
-
 #pragma mark - Notification
 /// 加载状态发生改变
 - (void)playLoadStateChanged:(NSNotification*)notification {
     ESMediaLoadState loadState = (ESMediaLoadState)[_player loadState];
+    self.loadState = (ESMediaLoadState)loadState;
     
-    if (loadState == ESMediaLoadStateUnknown) {
-        printf("loadState:\tESMediaLoadStateUnknown\n");
-    }
-    if (loadState & ESMediaLoadStatePlayable) {
-        printf("loadState:\tESMediaLoadStatePlayable\n");
-    }
-    if (loadState & ESMediaLoadStatePlaythroughOK) {
-        printf("loadState:\tESMediaLoadStatePlaythroughOK\n");
-    }
-    if (loadState & ESMediaLoadStateStalled) {
-        printf("loadState:\tESMediaLoadStateStalled\n");
-    }
-    for (id<ESMediaPlayerCtrlAble> ctrl  in _ctrls) {
-        if ([ctrl respondsToSelector:@selector(playerLoadStateChanged:)]) {
-            [ctrl playerLoadStateChanged:(ESMediaLoadState)loadState];
-        }
-    }
+    
 }
 /// 播放状态发生改变
 - (void)playBackStateChanged:(NSNotification*)notification {
     IJKMPMoviePlaybackState playbackState = [_player playbackState];
+    self.playbackState = (ESMediaPlaybackState)playbackState;
+}
+
+#pragma mark - Player
+- (NSTimeInterval)currentPlaybackTime {
+    if (_player.playbackState == IJKMPMoviePlaybackStateStopped) {
+        return 0;
+    }
+    return [_player currentPlaybackTime];
+}
+- (void)setCurrentPlaybackTime:(NSTimeInterval)currentPlaybackTime {
+    if (_player.playbackState != IJKMPMoviePlaybackStatePlaying) {
+        [_player play];
+    }
+    [_player setCurrentPlaybackTime:currentPlaybackTime];
+}
+- (NSTimeInterval)duration {
+    NSLog(@"%lf", [_player duration]);
+    return [_player duration];
+}
+//- (ESMediaPlaybackState)playbackState {
+////    return (ESMediaPlaybackState)[_player playbackState];
+//    return _playbackState;
+//}
+//- (ESMediaLoadState)loadState {
+////    return (ESMediaLoadState)[_player loadState];
+//    return _loadState;
+//}
+
+- (void)setPlaybackState:(ESMediaPlaybackState)playbackState {
+    if (_playbackState == playbackState) {
+        return;
+    }
+    _playbackState = playbackState;
+    
     if (playbackState == ESMediaPlaybackStateStopped) {
         printf("playbackState:\tESMediaPlaybackStateStopped\n");
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setCtrlViewHidden:) object:@(YES)];
@@ -214,6 +242,9 @@
             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setCtrlViewHidden:) object:@(YES)];
             [self performSelector:@selector(setCtrlViewHidden:) withObject:@(YES) afterDelay:_autoHiddenTimeinterval];
         }
+        
+        UIImage *thumbnailImage = [_player thumbnailImageAtCurrentTime];
+        NSLog(@"%@", thumbnailImage);
     }
     else if (playbackState == ESMediaPlaybackStatePaused) {
         printf("playbackState:\tESMediaPlaybackStatePaused\n");
@@ -235,28 +266,36 @@
     }
 }
 
-#pragma mark - Player
-- (NSTimeInterval)currentPlaybackTime {
-    if (_player.playbackState == IJKMPMoviePlaybackStateStopped) {
-        return 0;
+- (void)setLoadState:(ESMediaLoadState)loadState {
+    if (_loadState == loadState) {
+        return;
     }
-    return [_player currentPlaybackTime];
-}
-- (void)setCurrentPlaybackTime:(NSTimeInterval)currentPlaybackTime {
-    [_player setCurrentPlaybackTime:currentPlaybackTime];
-    if (_player.playbackState == IJKMPMoviePlaybackStatePaused) {
-        [_player play];
+    _loadState = loadState;
+    
+    NSLog(@"loadState: %ld", loadState);
+    
+    if (loadState == ESMediaLoadStateUnknown) {
+        printf("loadState:\tESMediaLoadStateUnknown\n");
+    }
+    if (loadState & ESMediaLoadStatePlayable) {
+        printf("loadState:\tESMediaLoadStatePlayable\n");
+        UIImage *thumbnailImage = [_player thumbnailImageAtCurrentTime];
+        NSLog(@"%@", thumbnailImage);
+    }
+    if (loadState & ESMediaLoadStatePlaythroughOK) {
+        printf("loadState:\tESMediaLoadStatePlaythroughOK\n");
+    }
+    if (loadState & ESMediaLoadStateStalled) {
+        printf("loadState:\tESMediaLoadStateStalled\n");
+    }
+    for (id<ESMediaPlayerCtrlAble> ctrl  in _ctrls) {
+        if ([ctrl respondsToSelector:@selector(playerLoadStateChanged:)]) {
+            [ctrl playerLoadStateChanged:(ESMediaLoadState)loadState];
+        }
     }
 }
-- (NSTimeInterval)duration {
-    return [_player duration];
-}
-- (ESMediaPlaybackState)playbackState {
-    return (ESMediaPlaybackState)[_player playbackState];
-}
-- (ESMediaLoadState)loadState {
-    return (ESMediaLoadState)[_player loadState];
-}
+
+
 
 #pragma mark - set 
 - (void)setAutoHiddenTimeinterval:(NSTimeInterval)autoHiddenTimeinterval {
@@ -288,7 +327,7 @@
 
 #pragma mark - help
 
-- (NSString *)getMIMETypeWithFilePath:(NSString *)path {
++ (NSString *)getMIMETypeWithFilePath:(NSString *)path {
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
         return NULL;
     }
@@ -298,7 +337,7 @@
     return (__bridge NSString *)(MIMEType);
 }
 
-- (UIImage *)getAudioArtworkWithURL:(NSURL *)url {
++ (UIImage *)getAudioArtworkWithURL:(NSURL *)url {
     AVURLAsset *asset = [AVURLAsset assetWithURL:url];
     for (AVMetadataItem *metadataItem in [asset metadata]) {
         if ([metadataItem.commonKey isEqualToString:@"artwork"]) {

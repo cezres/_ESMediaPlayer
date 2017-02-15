@@ -9,13 +9,21 @@
 #import "ViewController.h"
 #import "ESMediaPlayer.h"
 
+#import "ESMediaPlayerView+Thumbnail.h"
+
 #import "TestViewController.h"
+
+#import <IJKMediaFramework/IJKMediaFramework.h>
+
 
 @interface ViewController ()
 
 @property (strong, nonatomic) ESMediaPlayerView *player;
 
 @property (strong, nonatomic) NSArray<NSURL *> *urls;
+
+
+@property (strong, nonatomic) IJKFFMoviePlayerController *ffmPlayer;
 
 @end
 
@@ -29,7 +37,14 @@
     [self addURLsWithExtension:@"mp4"];
     [self addURLsWithExtension:@"flv"];
     
+    
     [self.view addSubview:self.player];
+    
+//    [ESMediaPlayerView removeAllThumbnailCached];
+    
+    
+//    UIImage *image = [ESMediaPlayerView thumbnailImageWithURL:self.urls[1]];
+//    NSLog(@"%@", image);
     
 }
 
@@ -60,7 +75,11 @@
     
 //    [_player stop];
     
-    [ESMediaPlayerViewController play:_urls.lastObject title:@"「你的名字」五月天【如果我们不曾相遇】" inController:self];
+    
+//    [_player play:[NSURL URLWithString:@"http://dianbo.wsdemo.zego.im/livestream-zegotest-2873169708-LVSID17021486977114763--20170213171127.m3u8"]];
+    
+    
+//    [ESMediaPlayerViewController playerWithURL:_urls.lastObject title:@"「你的名字」五月天【如果我们不曾相遇】" inController:self];
     
     
 //    TestViewController *test = [[TestViewController alloc] init];

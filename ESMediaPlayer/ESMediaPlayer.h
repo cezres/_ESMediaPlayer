@@ -20,3 +20,4 @@ FOUNDATION_EXPORT const unsigned char ESMediaPlayerVersionString[];
 #import "ESMediaPlayerViewController.h"
 #import "ESMediaPlayerProtocol.h"
 
+#import "ESMediaPlayerView+Thumbnail.h"

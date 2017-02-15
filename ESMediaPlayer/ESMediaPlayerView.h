@@ -50,7 +50,10 @@
 - (void)addMediaCtrl:(id<ESMediaPlayerCtrlAble>)ctrl;
 
 
-#pragma mark - Player
+
+
+
+#pragma mark Player
 
 @property (assign, nonatomic) NSTimeInterval currentPlaybackTime;
 @property (assign, nonatomic, readonly) NSTimeInterval duration;
@@ -59,3 +62,8 @@
 @property (assign, nonatomic, readonly) ESMediaLoadState loadState;
 
 @end
+
+
+
+
+

@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, PanGestureMode) {
 };
 
 @interface ESMediaGestureRecognizer ()
-
+<UIGestureRecognizerDelegate>
 {
     PanGestureMode _panGestureMode;
     
@@ -128,6 +128,11 @@ typedef NS_ENUM(NSInteger, PanGestureMode) {
 }
 
 
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    return _playerView.loadState & ESMediaLoadStatePlayable;
+}
+
 #pragma mark - get
 - (UITapGestureRecognizer *)tapGesture {
     if (!_tapGesture) {
@@ -139,6 +144,7 @@ typedef NS_ENUM(NSInteger, PanGestureMode) {
 - (UIPanGestureRecognizer *)panGesture {
     if (!_panGesture) {
         _panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+        _panGesture.delegate = self;
     }
     return _panGesture;
 }

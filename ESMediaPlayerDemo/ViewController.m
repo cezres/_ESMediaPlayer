@@ -42,8 +42,7 @@
     
 //    [ESMediaPlayerView removeAllThumbnailCached];
     
-    
-//    UIImage *image = [ESMediaPlayerView thumbnailImageWithURL:self.urls[1]];
+//    UIImage *image = [ESMediaPlayerView thumbnailImageWithURL:self.urls[2]];
 //    NSLog(@"%@", image);
     
 }

@@ -11,6 +11,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import <objc/runtime.h>
+#import <IJKMediaFramework/IJKMediaFramework.h>
 
 @implementation ESMediaPlayerView (Thumbnail)
 
@@ -55,6 +56,9 @@
         CMTime actualTime;
         CGImageRef cgImage = [imageGenerator copyCGImageAtTime:time actualTime:&actualTime error:&error];
         thumbnailImage = [UIImage imageWithCGImage:cgImage];
+        if (!thumbnailImage) {
+            thumbnailImage = FFMovieThumbnailImage(url, 1);
+        }
     }
     [self storeCachedImage:thumbnailImage ForURL:url];
     return thumbnailImage;

@@ -18,6 +18,6 @@ unzip -o $2/$1 -d $2
 
 }
 
-download "ijkplayer-k0.7.7.zip" "Librarys"
+download "ijkplayer-k0.7.7.1.zip" "Librarys"
 
 

@@ -12,9 +12,6 @@
 
 + (UIImage *)thumbnailImageWithURL:(NSURL *)url;
 
-+ (void)removeAllThumbnailCached;
-
-
 @end
 
 

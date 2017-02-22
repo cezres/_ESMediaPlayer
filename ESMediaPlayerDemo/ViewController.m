@@ -45,10 +45,15 @@
 //    UIImage *image = [ESMediaPlayerView thumbnailImageWithURL:self.urls[2]];
 //    NSLog(@"%@", image);
     
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [self.player play:[NSURL URLWithString:@"https://mvvideo5.meitudata.com/571090934cea5517.mp4"]];
+//    });
+    
 }
 
 
 - (IBAction)next:(id)sender {
+    
     if (![_urls count]) {
         return;
     }
@@ -66,6 +71,10 @@
     else {
         [_player play:_urls.firstObject];
     }
+    
+//    [_player play];
+//    _player.currentPlaybackTime = 100;
+    
 }
 - (IBAction)stop:(id)sender {
     if (![_urls count]) {
@@ -75,7 +84,7 @@
 //    [_player stop];
     
     
-//    [_player play:[NSURL URLWithString:@"http://dianbo.wsdemo.zego.im/livestream-zegotest-2873169708-LVSID17021486977114763--20170213171127.m3u8"]];
+    [_player play:[NSURL URLWithString:@"http://mvvideo5.meitudata.com/571090934cea5517.mp4"]];
     
     
 //    [ESMediaPlayerViewController playerWithURL:_urls.lastObject title:@"「你的名字」五月天【如果我们不曾相遇】" inController:self];

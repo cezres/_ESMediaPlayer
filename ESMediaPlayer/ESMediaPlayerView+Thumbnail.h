@@ -10,7 +10,7 @@
 
 @interface ESMediaPlayerView (Thumbnail)
 
-+ (UIImage *)thumbnailImageWithURL:(NSURL *)url;
++ (UIImage *)thumbnailImageWithURL:(NSURL *)url atTime:(NSTimeInterval)playTime;
 
 @end
 

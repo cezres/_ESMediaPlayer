@@ -105,6 +105,12 @@
     }
 }
 
+- (void)playerBackStateChanged:(ESMediaPlaybackState)playbackState {
+    if (playbackState == ESMediaPlaybackStateStopped && _closeOnComplete) {
+        [self dismissViewControllerAnimated:YES completion:NULL];
+    }
+}
+
 
 - (UIVisualEffectView *)topView {
     if (!_topView) {

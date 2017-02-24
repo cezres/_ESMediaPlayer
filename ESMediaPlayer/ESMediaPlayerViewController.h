@@ -13,6 +13,13 @@
 
 @property (strong, nonatomic) ESMediaPlayerView *playerView;
 
+
+/**
+ 播放完成后关闭控制器
+ */
+@property (assign, nonatomic) BOOL closeOnComplete;
+
+
 + (instancetype)playerInController:(UIViewController *)viewController;
 
 + (instancetype)playerWithURL:(NSURL *)url title:(NSString *)title inController:(UIViewController *)viewController;

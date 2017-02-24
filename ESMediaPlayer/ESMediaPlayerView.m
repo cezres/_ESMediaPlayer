@@ -214,7 +214,6 @@
     [_player setCurrentPlaybackTime:currentPlaybackTime];
 }
 - (NSTimeInterval)duration {
-    NSLog(@"%lf", [_player duration]);
     return [_player duration];
 }
 //- (ESMediaPlaybackState)playbackState {
@@ -242,9 +241,6 @@
             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setCtrlViewHidden:) object:@(YES)];
             [self performSelector:@selector(setCtrlViewHidden:) withObject:@(YES) afterDelay:_autoHiddenTimeinterval];
         }
-        
-        UIImage *thumbnailImage = [_player thumbnailImageAtCurrentTime];
-        NSLog(@"%@", thumbnailImage);
     }
     else if (playbackState == ESMediaPlaybackStatePaused) {
         printf("playbackState:\tESMediaPlaybackStatePaused\n");
@@ -279,8 +275,6 @@
     }
     if (loadState & ESMediaLoadStatePlayable) {
         printf("loadState:\tESMediaLoadStatePlayable\n");
-        UIImage *thumbnailImage = [_player thumbnailImageAtCurrentTime];
-        NSLog(@"%@", thumbnailImage);
     }
     if (loadState & ESMediaLoadStatePlaythroughOK) {
         printf("loadState:\tESMediaLoadStatePlaythroughOK\n");

@@ -84,10 +84,10 @@
 //    [_player stop];
     
     
-    [_player play:[NSURL URLWithString:@"http://mvvideo5.meitudata.com/571090934cea5517.mp4"]];
+//    [_player play:[NSURL URLWithString:@"http://mvvideo5.meitudata.com/571090934cea5517.mp4"]];
     
     
-//    [ESMediaPlayerViewController playerWithURL:_urls.lastObject title:@"「你的名字」五月天【如果我们不曾相遇】" inController:self];
+    [ESMediaPlayerViewController playerWithURL:_urls.lastObject title:@"「你的名字」五月天【如果我们不曾相遇】" inController:self];
     
     
 //    TestViewController *test = [[TestViewController alloc] init];
@@ -115,10 +115,10 @@
     _player.frame = CGRectMake(0, (self.view.bounds.size.height - height) / 2, self.view.bounds.size.width, height);
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
 }
 
 - (ESMediaPlayerView *)player {
